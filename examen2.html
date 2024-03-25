@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>examen2</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body onload="startTime()" align="center">
+<div id="horloge" ><h2>Il est actuellement : </h2><span id="time" style="display: inline;"></span></div><br>
+<button id="form">Ajouter des taches</button><br>
+</body>
+
+
+
+<script>
+
+function startTime() {
+  let today = new Date();
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('time').innerHTML =
+    h + ":" + m + ":" + s;
+  let t = setTimeout(startTime, 500);
+}
+
+function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i
+  };
+  return i;
+}
+
+
+
+document.getElementById('form').addEventListener('click',function(){
+let div=document.createElement('div')
+
+div.setAttribute('id','tache')
+let check='<input id="check" type="checkbox" oninput="addalert(event)"> '
+let heure='<input type="number" min="0" max="23"> : '
+let min='<input type="number" min="0" max="59"> '
+let tache='<input type="text"> '
+let button = document.createElement("button")
+button.innerHTML+='-'
+button.addEventListener('click',function(){
+    document.body.removeChild(div)
+})
+div.innerHTML+=check+heure+min+tache
+div.appendChild(button)
+document.body.appendChild(div)
+
+
+
+})
+
+function addalert(e){
+    let date=document.getElementById('time').textContent
+    
+}
+
+
+
+
+</script>
+
+</html>
