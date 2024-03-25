@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen</title>
+    <!--element.style.cssText-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body align="center">
+<h1>Formulaire</h1>
+<div id="ex1">
+
+<form id="form" >
+
+Identifiant : <input id="identifiant" type="text" required><br><br>
+Prénom : <input id="prenom" type="text" required><br><br>
+Nom : <input id="nom" type="text" required><br><br>
+Age : <input id="age" type="text" required><br><br>
+Mot de passe : <input type="password" id="pass1" required><br><br>
+Confirmer le mot de passe : <input type="password" id="pass2" required><br><br>
+<input type="checkbox" id="cgu" required> J'accepte les CGU  <br><br>
+<input type="button" value="Voulez vouz soumettre votre formulaire" id="check"><br><br>
+<input type="submit" id="button" value="soumettre" disabled>
+
+</form>
+
+</div>
+
+
+
+</body>
+
+<script>
+    
+    document.getElementById('check').addEventListener('click',function(e){
+    e.preventDefault()
+    let id=document.getElementById('identifiant').value.trim()
+    let nom= document.getElementById('nom').value.trim()
+    let prenom = document.getElementById('prenom').value.trim()
+    let m1 = document.getElementById('pass1').value.trim()
+    let m2 = document.getElementById('pass2').value.trim()
+    let age = document.getElementById('age').value.trim()
+    let cgu=document.getElementById('cgu').value
+    let idVal=/^[a-zA-Z]+$/
+    let valid=true
+    if (age && Number(age)<18){
+        alert("Vous devez plus de 18 ans")
+        valid=false
+    }
+    if( id && id.length<12 && !idVal.test(id)){
+        alert('L identifiant est incorrect')
+        valid=false
+    }
+
+    
+    if(m1 && m1.length<8){
+        alert('Le mot de passe doit etre fort')
+    }
+    if(m1 && m2 && m1!=m2){
+        alert('les deux mots de passe doivent etre identiques')
+        valid=false
+    }
+    if(!cgu){
+        alert('les cgu doivent etre acceptees')
+    }
+    if(valid){
+    document.getElementById('button').removeAttribute('disabled')
+}
+
+    console.log('Validé')
+    })
+    
+
+</script>
+</html>
